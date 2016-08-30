@@ -8,6 +8,11 @@
       "outputs": {
         "temperature": {"variable": "water_temperature"}
       }
+    },
+    {
+      "_id": "gc0012_1",
+      "type:": "gc0012",
+      "environment": "environment_1"
     }
   ],
   "software_module": [
