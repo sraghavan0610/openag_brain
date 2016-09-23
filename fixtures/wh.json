@@ -1,0 +1,40 @@
+{
+  "firmware_module": [
+    {
+      "_id": "red_light_1",
+      "arguments": [13],
+      "environment": "environment_1",
+      "type": "binary_actuator"
+    },
+    {
+      "_id": "blue_light_1",
+      "arguments": [13],
+      "environment": "environment_1",
+      "type": "binary_actuator"
+    },
+    {
+      "_id": "white_light_1",
+      "arguments": [13],
+      "environment": "environment_1",
+      "type": "binary_actuator"
+    },
+    {
+      "_id": "pump_1",
+      "arguments": [13],
+      "environment": "environment_1",
+      "type": "binary_actuator"
+    },
+    {
+      "_id": "pump_2",
+      "arguments": [13],
+      "environment": "environment_1",
+      "type": "binary_actuator"
+    },
+    {
+      "_id": "pump_3",
+      "arguments": [13],
+      "environment": "environment_1",
+      "type": "binary_actuator"
+    }
+  ]
+}
