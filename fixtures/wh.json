@@ -2,39 +2,81 @@
   "firmware_module": [
     {
       "_id": "red_light_1",
-      "arguments": [13],
+      "arguments": [3],
       "environment": "environment_1",
-      "type": "binary_actuator"
+      "type": "pwm_actuator"
     },
     {
       "_id": "blue_light_1",
-      "arguments": [13],
+      "arguments": [4],
       "environment": "environment_1",
-      "type": "binary_actuator"
+      "type": "pwm_actuator"
     },
     {
       "_id": "white_light_1",
-      "arguments": [13],
+      "arguments": [5],
       "environment": "environment_1",
-      "type": "binary_actuator"
+      "type": "pwm_actuator"
     },
     {
       "_id": "pump_1",
-      "arguments": [13],
+      "arguments": [37, true],
       "environment": "environment_1",
       "type": "binary_actuator"
     },
     {
       "_id": "pump_2",
-      "arguments": [13],
+      "arguments": [35, true],
       "environment": "environment_1",
       "type": "binary_actuator"
     },
     {
       "_id": "pump_3",
-      "arguments": [13],
+      "arguments": [33, true],
       "environment": "environment_1",
       "type": "binary_actuator"
+    },
+    {
+      "_id": "pump_4",
+      "arguments": [31, true],
+      "environment": "environment_1",
+      "type": "binary_actuator"
+    },
+    {
+      "_id": "pump_5",
+      "arguments": [29, true],
+      "environment": "environment_1",
+      "type": "binary_actuator"
+    },
+    {
+      "_id": "humidifier",
+      "arguments": [27, true],
+      "environment": "environment_1",
+      "type": "binary_actuator"
+    },
+    {
+      "_id": "atlas_ec_1",
+      "environment": "environment_1",
+      "type": "atlas_ec"
+    },
+    {
+      "_id": "atlas_ph_1",
+      "environment": "environment_1",
+      "type": "atlas_ph"
+    },
+    {
+      "_id": "mhz16_1",
+      "environment": "environment_1",
+      "type": "mhz16"
+    },
+    {
+      "_id": "ds18b20_1",
+      "type": "ds18b20",
+      "environment": "environment_1",
+      "arguments": [6],
+      "outputs": {
+        "temperature": {"variable": "water_temperature"}
+      }
     }
   ]
 }
