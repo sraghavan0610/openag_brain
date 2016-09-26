@@ -1,7 +1,7 @@
 {
   "firmware_module_type": [
     {
-      "_id": "pwm_actuator_demo",
+      "_id": "pwm_actuator",
       "repository": {
         "type": "git",
         "url": "https://github.com/gordonbrander/openag_pwm_actuator.git"
@@ -36,7 +36,7 @@
       ]
     },
     {
-      "_id": "binary_actuator_demo",
+      "_id": "binary_actuator",
       "repository": {
         "type": "git",
         "url": "https://github.com/gordonbrander/openag_binary_actuator.git"
@@ -70,55 +70,55 @@
       "_id": "red_light_1",
       "arguments": [3],
       "environment": "environment_1",
-      "type": "pwm_actuator_demo"
+      "type": "pwm_actuator"
     },
     {
       "_id": "blue_light_1",
       "arguments": [4],
       "environment": "environment_1",
-      "type": "pwm_actuator_demo"
+      "type": "pwm_actuator"
     },
     {
       "_id": "white_light_1",
       "arguments": [5],
       "environment": "environment_1",
-      "type": "pwm_actuator_demo"
+      "type": "pwm_actuator"
     },
     {
       "_id": "pump_1",
       "arguments": [37, true],
       "environment": "environment_1",
-      "type": "binary_actuator_demo"
+      "type": "binary_actuator"
     },
     {
       "_id": "pump_2",
       "arguments": [35, true],
       "environment": "environment_1",
-      "type": "binary_actuator_demo"
+      "type": "binary_actuator"
     },
     {
       "_id": "pump_3",
       "arguments": [33, true],
       "environment": "environment_1",
-      "type": "binary_actuator_demo"
+      "type": "binary_actuator"
     },
     {
       "_id": "pump_4",
       "arguments": [31, true],
       "environment": "environment_1",
-      "type": "binary_actuator_demo"
+      "type": "binary_actuator"
     },
     {
       "_id": "pump_5",
       "arguments": [29, true],
       "environment": "environment_1",
-      "type": "binary_actuator_demo"
+      "type": "binary_actuator"
     },
     {
       "_id": "humidifier",
       "arguments": [27, true],
       "environment": "environment_1",
-      "type": "binary_actuator_demo"
+      "type": "binary_actuator"
     },
     {
       "_id": "atlas_ec_1",
