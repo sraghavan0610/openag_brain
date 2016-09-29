@@ -1,0 +1,9 @@
+{
+  "software_module": [
+    {
+      "_id": "arduino_handler",
+      "type": "openag_brain:arduino_handler.py",
+      "_deleted": true
+    }
+  ]
+}
