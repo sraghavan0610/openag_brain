@@ -63,24 +63,6 @@ with our system, this file need only contain the fields `name` and `framework`.
 The `name` field should be the name of the module, and the `framework` field
 should have the value `arduino`.
 
-Categories
-==========
-
-The OpenAg system defines a list of "categories" which can be used to describe
-the functionality contained in a firmware/software module/input/output. For
-example, the firmware module for the am2315 sensor itself belongs to the
-"sensors" and "calibration" category because it outputs sensor data and has
-inputs for calibration. The air temperature and air humidity outputs from this
-firmware module belong to the "sensors" category because they represent sensor
-readings, and the inputs to this module used for calibration belong to the
-"calibration" category.
-
-When flashing an Arduino, it is possible to specify a list of categories that
-should be enabled. By default, all categories are enabled except for
-"calibration". This allows the codegen system to generate one Arduino sketch to
-use during normal operation and a different sketch to use for calibration that
-enables the "calibration" inputs and disables the "actators", for example.
-
 Examples
 --------
 

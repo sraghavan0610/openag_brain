@@ -28,6 +28,7 @@ Contents
     variable_types
     recipes
     firmware_modules
+    categories
 
 
 Indices and tables
