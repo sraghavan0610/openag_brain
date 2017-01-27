@@ -21,6 +21,14 @@ Contents
     api
     fixtures
     docker
+    cli
+    object_model
+    db_names
+    database_queries
+    variable_types
+    recipes
+    firmware_modules
+
 
 Indices and tables
 ------------------
