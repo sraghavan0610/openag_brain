@@ -23,12 +23,9 @@ from openag.utils import gen_doc_id, read_environment_from_ns
 from openag.models import EnvironmentalDataPoint
 from openag.memoize import memoize
 from openag.db_names import ENVIRONMENTAL_DATA_POINT, RECIPE
-from openag.var_types import RECIPE_START, RECIPE_END, EnvVar
+from openag.var_types import RECIPE_START, RECIPE_END, ALL_VARIABLES
 from openag.multidispatch import multidispatch
 from openag_brain.srv import StartRecipe, Empty
-
-# Create a tuple constant of valid environmental variables
-VALID_VARIABLES = frozenset(EnvVar.items.keys())
 
 @memoize
 def publisher_memo(topic, MsgType, queue_size):
@@ -146,7 +143,7 @@ class PhasedRecipeInterpreter:
                 phase_duration = hrs_to_seconds(phase["hours"])
                 end_of_phase += phase_duration
                 while rospy.get_time() < end_of_phase:
-                    for key in VALID_VARIABLES.intersection(phase_keys):
+                    for key in ALL_VARIABLES.intersection(phase_keys):
                         yield (rospy.get_time(), key, float(phase[key]))
                     rospy.sleep(self.timeout)
         yield (rospy.get_time(), RECIPE_END.name, self.id)
@@ -206,7 +203,7 @@ class RecipeHandler:
                         break
 
                     # Skip invalid variable types
-                    if variable not in VALID_VARIABLES:
+                    if variable not in ALL_VARIABLE:
                         msg = 'Recipe references invalid variable "{}"'
                         rospy.logwarn(msg.format(variable))
                         continue
