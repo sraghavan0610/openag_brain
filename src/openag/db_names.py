@@ -1,23 +1,46 @@
-__all__ = ["all_dbs", "global_dbs", "per_farm_dbs"]
+RECIPE = "recipes"
+""" The database for holding :py:class:`~openag.models.Recipe` objects """
 
-all_dbs = set()
-global_dbs = set()
-per_farm_dbs = set()
+SOFTWARE_MODULE_TYPE = "software_module_type"
+"""
+The database for holding :py:class:`~openag.modles.SoftwareModuleType` objects
+"""
 
-def global_db(db):
-    all_dbs.add(db)
-    global_dbs.add(db)
-    return db
+SOFTWARE_MODULE = "software_module"
+"""
+The database for holding :py:class:`~openag.models.SoftwareModule` objects
+"""
 
-def per_farm_db(db):
-    all_dbs.add(db)
-    per_farm_dbs.add(db)
-    return db
+FIRMWARE_MODULE_TYPE = "firmware_module_type"
+"""
+The database for holding :py:class:`~openag.models.FirmwareModuleType`
+objects
+"""
 
-RECIPE = global_db("recipes")
-SOFTWARE_MODULE_TYPE = global_db("software_module_type")
-SOFTWARE_MODULE = per_farm_db("software_module")
-FIRMWARE_MODULE_TYPE = global_db("firmware_module_type")
-FIRMWARE_MODULE = per_farm_db("firmware_module")
-ENVIRONMENT = per_farm_db("environment")
-ENVIRONMENTAL_DATA_POINT = per_farm_db("environmental_data_point")
+FIRMWARE_MODULE = "firmware_module"
+"""
+The database for holding :py:class:`~openag.models.FirmwareModule` objects
+"""
+
+ENVIRONMENT = "environment"
+""" The database for holding :py:class:`~openag.models.Environment` objects """
+
+ENVIRONMENTAL_DATA_POINT = "environmental_data_point"
+""" 
+The database for holding :py:class:`~openag.models.EnvironmentalDataPoint`
+objects
+"""
+
+all_dbs = frozenset([
+    RECIPE, SOFTWARE_MODULE_TYPE, SOFTWARE_MODULE, FIRMWARE_MODULE_TYPE,
+    FIRMWARE_MODULE, ENVIRONMENT, ENVIRONMENTAL_DATA_POINT
+])
+""" The set of all database names """
+
+global_dbs = frozenset([
+    RECIPE, SOFTWARE_MODULE_TYPE, FIRMWARE_MODULE_TYPE
+])
+""" The names of the databases that can be synced from a global source """
+
+per_farm_dbs = all_dbs - global_dbs
+""" The names of the databases that have only farm-specific information """
