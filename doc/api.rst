@@ -3,5 +3,5 @@
 API
 ===
 
-.. automodule:: openag_brain.software_modules.api
+.. automodule:: openag.software_modules.api
     :members:

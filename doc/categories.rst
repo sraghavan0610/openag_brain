@@ -1,5 +1,5 @@
-Categories
-==========
+Module Categories
+=================
 
 The OpenAg system defines a list of "categories" which can be used to describe
 the functionality contained in a firmware/software module/input/output. For

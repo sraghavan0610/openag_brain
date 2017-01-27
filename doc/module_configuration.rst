@@ -24,8 +24,8 @@ It also updates the roslaunch file and restarts the modules whenever the
 configuration of software modules in the database is changed, allowing for the
 modules to be reconfigured dynamically. For information on the structure of the
 `software_module_type` and `software_module` databases, see
-:py:class:`~openag_brain.models.SoftwareModuleTypeModel` and
-:py:class:`~openag_brain.models.SoftwareModuleModel`, respectively.
+:py:class:`~openag.models.SoftwareModuleTypeModel` and
+:py:class:`~openag.models.SoftwareModuleModel`, respectively.
 
 The following are all software modules that come bundled with the system. To
 write your own software module type, simply define an executable file with the
@@ -37,49 +37,49 @@ be able to create instances of the module type by creating entries in the
 API
 ~~~
 
-.. automodule:: openag_brain.software_modules.api
+.. automodule:: openag.software_modules.api
 
 For information on the API endpoints, see :ref:`APIEndpoints`
 
 Handle Arduino
 ~~~~~~~~~~~~~~
 
-.. automodule:: openag_brain.software_modules.handle_arduino
+.. automodule:: openag.software_modules.handle_arduino
 
 Image Persistence
 ~~~~~~~~~~~~~~~~~
 
-.. automodule:: openag_brain.software_modules.image_persistence
+.. automodule:: openag.software_modules.image_persistence
 
 PID Controller
 ~~~~~~~~~~~~~~
 
-.. automodule:: openag_brain.software_modules.pid
+.. automodule:: openag.software_modules.pid
 
 Recipe Handler
 ~~~~~~~~~~~~~~
 
-.. automodule:: openag_brain.software_modules.recipe_handler
+.. automodule:: openag.software_modules.recipe_handler
 
 Sensor Persistence
 ~~~~~~~~~~~~~~~~~~
 
-.. automodule:: openag_brain.software_modules.sensor_persistence
+.. automodule:: openag.software_modules.sensor_persistence
 
 Topic Connector
 ~~~~~~~~~~~~~~~
 
-.. automodule:: openag_brain.software_modules.topic_connector
+.. automodule:: openag.software_modules.topic_connector
 
 Topic Filter
 ~~~~~~~~~~~~
 
-.. automodule:: openag_brain.software_modules.topic_filter
+.. automodule:: openag.software_modules.topic_filter
 
 Video Writer
 ~~~~~~~~~~~~
 
-.. automodule:: openag_brain.software_modules.video_writer
+.. automodule:: openag.software_modules.video_writer
 
 Firmware Modules
 ----------------
@@ -127,8 +127,8 @@ When the :ref:`OpenagCmdGenerateFirmware` script is run, it generates Arduino
 code based on the configuration of firmware modules that can be flashed to the
 Arduino to interface with the hardware. For information on the structure of the
 `firmware_module_type` and `firmware_module` databases, see
-:py:class:`~openag_brain.models.FirmwareModuleTypeModel` and
-:py:class:`~openag_brain.models.FirmwareModelModel`, respectively.
+:py:class:`~openag.models.FirmwareModuleTypeModel` and
+:py:class:`~openag.models.FirmwareModelModel`, respectively.
 
 The following is a list of peripherals for which firmware modules already
 exist:
