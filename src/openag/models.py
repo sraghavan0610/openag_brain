@@ -408,7 +408,7 @@ SoftwareModuleType = Schema({
     Required("package"): Any(str, unicode),
     Required("executable"): Any(str, unicode),
     "description": Any(str, unicode),
-    "categories": all_categories,
+    "categories": list(all_categories),
     Required("arguments", default=[]): [SoftwareArgument],
     Required("parameters", default={}): {Extra: Parameter},
     Required("inputs", default={}): {Extra: SoftwareInput},
@@ -484,7 +484,7 @@ SoftwareModule = Schema({
     Required("type"): Any(str, unicode),
     "namespace": Any(str, unicode),
     "environment": Any(str, unicode),
-    "categories": all_categories,
+    "categories": list(all_categories),
     "arguments": [object],
     "parameters": dict,
     "mappings": dict
