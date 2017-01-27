@@ -2,7 +2,7 @@
 import rospy
 
 from std_msgs.msg import Float64
-from openag_brain.var_types import SENSOR_VARIABLES
+from openag.var_types import SENSOR_VARIABLES
 
 class EWMA:
     def __init__(self, a):

@@ -11,9 +11,8 @@ import subprocess
 from openag.cli.config import config as cli_config
 from openag.couch import Server
 from openag.db_names import ENVIRONMENTAL_DATA_POINT
-from openag.var_types import RECIPE_START, RECIPE_END
-from openag_brain.var_types import CAMERA_VARIABLES
-from openag_brain.video_helpers import *
+from openag.var_types import RECIPE_START, RECIPE_END, CAMERA_VARIABLES
+from openag.video_helpers import *
 
 IMAGE_ATTACHMENT = "image"
 TIMELAPSE_ATTACHMENT = "timelapse"

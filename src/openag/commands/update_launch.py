@@ -2,13 +2,11 @@ import os
 import rospkg
 import lxml.etree as ET
 
-from openag_brain import params
 from openag.utils import synthesize_software_module_info
 from openag.models import SoftwareModule, SoftwareModuleType
+from openag.params import CATEGORIES
 from openag.db_names import SOFTWARE_MODULE, SOFTWARE_MODULE_TYPE
 from openag.categories import default_categories, all_categories
-
-from openag_brain.params import CATEGORIES
 
 # maping from python types to roslaunch acceptable ones
 PARAM_TYPE_MAPPING = {'float' : 'double'}

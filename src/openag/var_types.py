@@ -74,7 +74,7 @@ SENSOR_VARIABLES = frozenset([
 ])
 """ The set of all valid sensor variables """
 
-CAMERA_VARIABLE = frozenset([
+CAMERA_VARIABLES = frozenset([
     AERIAL_IMAGE, FRONTAL_IMAGE
 ])
 """ The set of all valid camera variables """

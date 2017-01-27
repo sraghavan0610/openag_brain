@@ -22,7 +22,6 @@ from openag.db_names import FIRMWARE_MODULE, FIRMWARE_MODULE_TYPE
 from couchdb import Server
 from std_msgs.msg import Bool, Float32, Float64
 
-from openag_brain import params
 from openag_brain.msg import SensorInfo
 from openag_brain.srv import Empty
 from roslib.message import get_message_class

@@ -18,8 +18,8 @@ from std_msgs.msg import Float64
 from openag.cli.config import config as cli_config
 from openag.models import EnvironmentalDataPoint
 from openag.db_names import ENVIRONMENTAL_DATA_POINT
-from openag_brain.var_types import SENSOR_VARIABLES
-from openag_brain.utils import read_environment_from_ns
+from openag.var_types import SENSOR_VARIABLES
+from openag.utils import read_environment_from_ns
 
 class TopicPersistence:
     def __init__(
