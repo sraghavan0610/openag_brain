@@ -64,6 +64,7 @@
     <node pkg="usb_cam" type="usb_cam_node" name="aerial_image">
       <rosparam file="$(find openag_brain)/launch/usb_cam.yaml" />
     </node>
+    <node pkg="openag_brain" type="image_analyzer.py" name="image_analyzer" />
   </group>
   <node pkg="openag_brain" type="expand_diagnostics.py" name="expand_diagnostics"/>
   <node pkg="openag_brain" type="handle_arduino.py" name="arduino_handler">
