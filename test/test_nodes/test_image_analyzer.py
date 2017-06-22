@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 PKG = 'openag_brain'
-NAME = 'test_image_analyze'
+NAME = 'test_image_analyzer'
 
 import sys
 import unittest
@@ -11,7 +11,7 @@ from std_msgs.msg import Float64
 def get_temp_file_name():
     return tempfile.gettempdir() + '/' + next(tempfile._get_candidate_names())
 
-class TestImageAnalyze(unittest.TestCase):
+class TestImageAnalyzer(unittest.TestCase):
     """
     Test the imaeg analyzer node. It should read an image from usb_cam and
     process it through the src/openag_cv modules.
@@ -35,7 +35,6 @@ class TestImageAnalyze(unittest.TestCase):
         print("Image saved to ".format(file_name))
         self.assertTrue(item.width == 480)
         self.assertTrue(item.height == 640)
-        exit()
 
     def test_usb_cam(self):
         rospy.init_node(NAME, anonymous=True)
@@ -55,4 +54,4 @@ class TestImageAnalyze(unittest.TestCase):
 
 if __name__ == "__main__":
     import rostest
-    rostest.rosrun(PKG, NAME, TestImageAnalyze)
+    rostest.rosrun(PKG, NAME, TestImageAnalyzer)

@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import time
 import rospy
 import requests
@@ -17,7 +19,7 @@ from openag_brain.utils import read_environment_from_ns
 # Filter a list of environmental variables that are specific to camera
 CAMERA_VARIABLES = create_variables(rospy.get_param('/var_types/camera_variables'))
 
-class ImagePersistence:
+class ImageProcess:
     image_format_mapping = {
         "rgb8": "RGB",
         "rgba8": "RGBA"
@@ -39,11 +41,11 @@ class ImagePersistence:
         self.last_update = curr_time
 
         rospy.loginfo("Posting image")
-
-        image_format = self.image_format_mapping.get(item.encoding, None)
-        if image_format is None:
-            raise ValueError()
-        img = Image.fromstring(
-            image_format, (item.width, item.height), item.data
-        )
-        img.save('/home/pi/images/')
+        print("Image Received!!!!")
+        # image_format = self.image_format_mapping.get(item.encoding, None)
+        # if image_format is None:
+        #     raise ValueError()
+        # img = Image.fromstring(
+        #     image_format, (item.width, item.height), item.data
+        # )
+        # img.save('/home/pi/images/')

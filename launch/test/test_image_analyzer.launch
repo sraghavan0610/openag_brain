@@ -4,6 +4,6 @@
       <rosparam file="$(find openag_brain)/launch/usb_cam.yaml" />
       <param name="pixel_format" type="str" value="yuyv"/>
     </node>
-    <test pkg="openag_brain" test-name="test_image_analyze" type="test_image_analyze.py" />
+    <test pkg="openag_brain" test-name="test_image_analyzer" type="test_image_analyzer.py" />
   </group>
 </launch>
