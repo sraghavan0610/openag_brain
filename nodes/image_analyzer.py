@@ -1,20 +1,11 @@
 #!/usr/bin/env python
 
-import time
 import rospy
-import requests
 from PIL import Image
-from couchdb import Server
-from StringIO import StringIO
 from sensor_msgs.msg import Image as ImageMsg
-from re import match
-
-from openag.cli.config import config as cli_config
-from openag.models import EnvironmentalDataPoint, SoftwareModule
-from openag.db_names import ENVIRONMENTAL_DATA_POINT, SOFTWARE_MODULE
 from openag_brain.load_env_var_types import create_variables
-from openag_brain import params
-from openag_brain.utils import read_environment_from_ns
+from cv_bridge import CvBridge, CvBridgeError
+import cv2
 
 # Filter a list of environmental variables that are specific to camera
 CAMERA_VARIABLES = create_variables(rospy.get_param('/var_types/camera_variables'))
@@ -33,19 +24,37 @@ class ImageProcess:
         self.last_update = 0
         self.sub = rospy.Subscriber(topic, ImageMsg, self.on_image)
 
-    def on_image(self, item):
-        # Rate limit
-        curr_time = time.time()
-        if (curr_time - self.last_update) < self.min_update_interval:
-            return
-        self.last_update = curr_time
 
-        rospy.loginfo("Posting image")
-        print("Image Received!!!!")
-        # image_format = self.image_format_mapping.get(item.encoding, None)
-        # if image_format is None:
-        #     raise ValueError()
-        # img = Image.fromstring(
-        #     image_format, (item.width, item.height), item.data
-        # )
-        # img.save('/home/pi/images/')
+image_format_mapping = {
+    "rgb8": "RGB",
+    "rgba8": "RGBA"
+}
+bridge = CvBridge()
+
+def on_image(self, item):
+    rospy.loginfo("===================Image Received===================")
+    self.image_received = True
+    rospy.loginfo("Image Received {} {}".format(item.width, item.height))
+    image_format = self.image_format_mapping.get(item.encoding, None)
+    if image_format is None:
+        raise ValueError()
+    cv2_img = self.bridge.imgmsg_to_cv2(item, "bgr8")
+    #np_arr = np.fromstring(item.data, np.uint8)
+    #image_np = cv2.imdecode(np_arr,cv2.IMREAD_COLOR)
+    file_name = get_temp_file_name()
+    rospy.loginfo("Saving image to {}".format(file_name))
+    cv2.imwrite(file_name, cv2_img)
+    # rospy.loginfo("Image saved to {}".format(file_name))
+    rospy.loginfo("width: {} height: {}".format(item.width, item.height))
+    self.assertTrue(item.width == 640)
+    self.assertTrue(item.height == 480)
+    self.image_processed = True
+
+def main():
+    image_received = False
+    rospy.init_node(NAME, anonymous=True)
+    #camera_source = "test_image"
+    image_rostopic = "{}/image_raw".format(self.namespace)
+    sub_measured = rospy.Subscriber(image_rostopic, Image, self.callback)
+    rospy.loginfo("Looking for image at " + image_rostopic)
+
