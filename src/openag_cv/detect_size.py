@@ -12,12 +12,17 @@ def midpoint(ptA, ptB):
 
 def creating_image_mask(luminance):
 	# cv2.imshow("luminance", luminance)
+	#cv2.imshow("luv", luv)
+	#split the luv image and retain only band 1
+	cv2.imwrite("luminance.png", luminance)
 	ret, thresh = cv2.threshold(luminance, 127, 255, cv2.THRESH_BINARY)
 	# cv2.imshow("hist", thresh)
 	ret1, thresh2 = cv2.threshold(thresh, 0, 255, cv2.THRESH_OTSU)
 	# cv2.imshow("otsu", thresh2)
 	mask_inv = cv2.bitwise_not(thresh2)
 	return mask_inv
+
+
 
 def detect_edges(mask_inv):
 	edged = cv2.dilate(mask_inv, None, iterations=1)
@@ -33,12 +38,13 @@ def detect_edges(mask_inv):
 	return count_of_edges
 
 def process_image(frame):
-	orig = frame.copy()
-	luv = cv2.cvtColor(orig, cv2.COLOR_BGR2LUV)
+	frame = np.array(frame, dtype=np.uint8)
+	luv = cv2.cvtColor(frame, cv2.COLOR_BGR2LUV)
 	#cv2.imshow("luv", luv)
 	#split the luv image and retain only band 1
 	l, u, v = cv2.split(luv)
 	mask_inv = creating_image_mask(l)
+
 	#cv2.imshow("inv", mask_inv)
 	count_of_edges = detect_edges(mask_inv)
 	pixelsPerMetric = None
@@ -50,7 +56,7 @@ def process_image(frame):
 			continue
 
 		# compute the rotated bounding box of the contour
-
+		orig = frame.copy()
 		box = cv2.minAreaRect(edge)
 		box = cv2.cv.BoxPoints(box) if imutils.is_cv2() else cv2.boxPoints(box)
 		box = np.array(box, dtype="int")
@@ -69,15 +75,15 @@ def process_image(frame):
 		# unpack the ordered bounding box, then compute the midpoint
 		# between the top-left and top-right coordinates, followed by
 		# the midpoint between bottom-left and bottom-right coordinates
-		(tl, tr, br, bl) = box
-		print tl, tr, br, bl
-		(tltrX, tltrY) = midpoint(tl, tr)
-		(blbrX, blbrY) = midpoint(bl, br)
+		(topleft, topright, bottomright, bottomleft) = box
+		print topleft, topright, bottomright, bottomleft
+		(tltrX, tltrY) = midpoint(topleft, topright)
+		(blbrX, blbrY) = midpoint(bottomleft, bottomright)
 
 		# compute the midpoint between the top-left and top-right points,
 		# followed by the midpoint between the top-righ and bottom-right
-		(tlblX, tlblY) = midpoint(tl, bl)
-		(trbrX, trbrY) = midpoint(tr, br)
+		(tlblX, tlblY) = midpoint(topleft, bottomleft)
+		(trbrX, trbrY) = midpoint(topright, bottomright)
 		print (tlblX, tlblY)
 		print (trbrX, trbrY)
 
@@ -93,28 +99,38 @@ def process_image(frame):
 			(255, 0, 255), 2)
 
 		# compute the Euclidean distance between the midpoints
-		dA = dist.euclidean((tltrX, tltrY), (blbrX, blbrY))
-		dB = dist.euclidean((tlblX, tlblY), (trbrX, trbrY))
+		dA_euclideandist = dist.euclidean((tltrX, tltrY), (blbrX, blbrY))
+		dB_euclideandist = dist.euclidean((tlblX, tlblY), (trbrX, trbrY))
+		print dA_euclideandist
+		print dB_euclideandist
 
 
 		# if the pixels per metric has not been initialized, then
 		# compute it as the ratio of pixels to supplied metric
 		# (in this case, inches)
 		if pixelsPerMetric is None:
-			pixelsPerMetric = dB / 10
+			pixelsPerMetric = dB_euclideandist / 10
 
 		# compute the size of the object
-		dimA = dA / pixelsPerMetric
-		dimB = dB / pixelsPerMetric
+		dimension_A = dA_euclideandist / pixelsPerMetric
+		dimension_B = dB_euclideandist / pixelsPerMetric
 
 		# draw the object sizes on the image
-		cv2.putText(orig, "{:.1f}in".format(dimA),
+		cv2.putText(orig, "{:.1f}in".format(dimension_A),
 			(int(tltrX - 15), int(tltrY - 10)), cv2.FONT_HERSHEY_SIMPLEX,
 			0.65, (255, 255, 255), 2)
-		cv2.putText(orig, "{:.1f}in".format(dimB),
+		cv2.putText(orig, "{:.1f}in".format(dimension_B),
 			(int(trbrX + 10), int(trbrY)), cv2.FONT_HERSHEY_SIMPLEX,
 			0.65, (255, 255, 255), 2)
-	return orig
+	return [orig,
+	       [(tltrX, tltrY),
+	        (blbrX, blbrY),
+	        (tlblX, tlblY),
+		    (trbrX, trbrY)],
+		   dA_euclideandist,
+		   dB_euclideandist,
+    	   dimension_A,
+    	   dimension_B]
 
 if __name__ == "__main__":
 
