@@ -1,5 +1,14 @@
 #!/usr/bin/env python
+"""
+The `image_analyzer.py` module listens for image data from an environment,
+and processes the image for the openag_cv modules. The new process images and any
+relevant data are then published to a new ros topic for analysis.
 
+It assumes all topics of the type `sensor_msgs/Image` under the namespace
+for the environment are streams of images from connected webcams.
+
+TODO: Save a list of openag_cv modules to use in the param server so they can be turned on and off as desired
+"""
 import rospy
 from PIL import Image
 from sensor_msgs.msg import Image as ImageMsg

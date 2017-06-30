@@ -99,7 +99,7 @@ class TestProcessImage(unittest.TestCase):
         self.assertTrue(item.height == 480)
         self.image_processed = True
 
-    def test_usb_cam(self):
+    def test_image_analyzer(self):
         self.image_received = False
         rospy.init_node(NAME, anonymous=True)
         #camera_source = "test_image"
